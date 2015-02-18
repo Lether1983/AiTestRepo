@@ -3,41 +3,27 @@ using System.Collections;
 
 public class AgentenControllscript : MonoBehaviour 
 {
-    Vector3 movedirection = Vector3.zero;
+    public Vector3 movedirection = Vector3.zero;
+    private StateHandler stateHandler;
+    public float dist;
+    public Transform other;
 	// Use this for initialization
 
 	void Start () 
     {
-	
+        stateHandler = new State1();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        Transform other = GameObject.FindGameObjectWithTag("Player").transform;
-        
+        other = GameObject.FindGameObjectWithTag("Player").transform;
+
         if(other)
         {
             CharacterController AgentenController = GetComponent<CharacterController>();
-
-            float dist = Vector3.Distance(this.transform.position, other.transform.position);
-
-            if(dist <= 2.5f && dist > 1f)
-            {
-                this.gameObject.GetComponentInChildren<TextMesh>().text = "Approach";
-                this.gameObject.transform.LookAt(other);
-                movedirection = this.transform.forward;
-            }
-            else if (dist <= 1f)
-            {
-                this.gameObject.GetComponentInChildren<TextMesh>().text = "Attack";
-                movedirection = Vector3.zero;
-            }
-            else
-            {
-                this.gameObject.GetComponentInChildren<TextMesh>().text = "Idle";
-                movedirection = Vector3.zero;
-            }
+            dist = Vector3.Distance(this.transform.position, other.transform.position);
+            stateHandler.Handler(this);
             AgentenController.Move(movedirection * Time.deltaTime);
         }
 	}

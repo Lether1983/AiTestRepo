@@ -24,7 +24,7 @@ public class Movement : MonoBehaviour
 
         if(dist <= 1)
         {
-            Application.LoadLevel(1);
+            Application.Quit();
         }
         charController.Move(movedirection * Time.deltaTime);
     }

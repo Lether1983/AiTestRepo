@@ -48,6 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\AgentenControllscript.cs" />
      <Compile Include="Assets\Movement.cs" />
+     <Compile Include="Assets\State1.cs" />
+     <Compile Include="Assets\State2.cs" />
+     <Compile Include="Assets\StateHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
