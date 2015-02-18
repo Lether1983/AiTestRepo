@@ -18,20 +18,27 @@ public class AgentenControllscript : MonoBehaviour
         
         if(other)
         {
+            CharacterController AgentenController = GetComponent<CharacterController>();
+
             float dist = Vector3.Distance(this.transform.position, other.transform.position);
 
             if(dist <= 2.5f && dist > 1f)
             {
                 this.gameObject.GetComponentInChildren<TextMesh>().text = "Approach";
+                this.gameObject.transform.LookAt(other);
+                movedirection = this.transform.forward;
             }
             else if (dist <= 1f)
             {
                 this.gameObject.GetComponentInChildren<TextMesh>().text = "Attack";
+                movedirection = Vector3.zero;
             }
             else
             {
                 this.gameObject.GetComponentInChildren<TextMesh>().text = "Idle";
+                movedirection = Vector3.zero;
             }
+            AgentenController.Move(movedirection * Time.deltaTime);
         }
 	}
 }
