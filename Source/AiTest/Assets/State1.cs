@@ -5,9 +5,9 @@ class State1 : StateHandler
 {
     public override void Handler(AgentenControllscript agentControllScript)
     {
-        Statefunction(agentControllScript);
+        NormalState(agentControllScript);
     }
-    private void Statefunction(AgentenControllscript agentControllScript)
+    private void NormalState(AgentenControllscript agentControllScript)
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
         {
@@ -24,6 +24,11 @@ class State1 : StateHandler
         {
             agentControllScript.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Idle";
             agentControllScript.movedirection = Vector3.zero;
+        }
+
+        if(agentControllScript.Health <= 50)
+        {
+            agentControllScript.stateHandler = new State2();
         }
     }
 }
