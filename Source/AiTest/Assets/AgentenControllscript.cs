@@ -7,13 +7,17 @@ public class AgentenControllscript : MonoBehaviour
     public float dist;
     public Transform other;
     public int Health;
+    public GameObject[] WaypointArray;
     public StateHandler stateHandler;
+    CharacterController AgentenController;
     
 	// Use this for initialization
 
 	void Start () 
     {
-        stateHandler = new State1();
+        AgentenController = GetComponent<CharacterController>();
+        WaypointArray = GameObject.FindGameObjectsWithTag("Waypoint");
+        stateHandler = new State1(this);
         Health = 100;
 	}
 	
@@ -33,10 +37,9 @@ public class AgentenControllscript : MonoBehaviour
 
         if(other)
         {
-            CharacterController AgentenController = GetComponent<CharacterController>();
             dist = Vector3.Distance(this.transform.position, other.transform.position);
             stateHandler.Handler(this);
-            AgentenController.Move(movedirection * Time.deltaTime);
         }
+        AgentenController.Move(movedirection * Time.deltaTime);
 	}
 }

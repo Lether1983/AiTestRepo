@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 class State1 : StateHandler 
 {
+    AgentenControllscript agentControllScript;
+    public State1(AgentenControllscript agent)
+    {
+        agentControllScript = agent;
+    }
     public override void Handler(AgentenControllscript agentControllScript)
     {
         NormalState(agentControllScript);
@@ -28,7 +34,8 @@ class State1 : StateHandler
 
         if(agentControllScript.Health <= 50)
         {
-            agentControllScript.stateHandler = new State2();
+            agentControllScript.stateHandler = new State2(agentControllScript);
+            
         }
     }
 }

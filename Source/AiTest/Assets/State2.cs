@@ -3,11 +3,20 @@ using System.Collections;
 
 class State2 : StateHandler
 {
+    Vector3 position;
     float speed = 2f;
+    AgentenControllscript agentControllScript;
+
+    public State2(AgentenControllscript agent)
+    {
+        agentControllScript = agent;
+        position = agent.WaypointArray[Random.Range(0, agent.WaypointArray.Length)].transform.position;
+    }
     public override void Handler(AgentenControllscript agentControllScript)
     {
         AggressiveState(agentControllScript);
     }
+
     private void AggressiveState(AgentenControllscript agentControllScript)
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
@@ -23,13 +32,20 @@ class State2 : StateHandler
         }
         else
         {
+             
+            if(Vector3.Distance(agentControllScript.transform.position, position) <= 0.5f)
+            {
+                position = agentControllScript.WaypointArray[Random.Range(0, agentControllScript.WaypointArray.Length)].transform.position;
+            }
+
+            agentControllScript.transform.LookAt(position);
+            agentControllScript.movedirection = agentControllScript.transform.forward;
             agentControllScript.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Seek";
-            agentControllScript.movedirection = Vector3.zero;
         }
 
         if(agentControllScript.Health > 50)
         {
-            agentControllScript.stateHandler = new State1();
+            agentControllScript.stateHandler = new State1(agentControllScript);
         }
     }
 }
