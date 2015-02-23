@@ -5,9 +5,10 @@ using System.Collections;
 class State1 : StateHandler 
 {
     AgentenControllscript agentControllScript;
-    public State1(AgentenControllscript agent)
+
+    public State1(AgentenControllscript agentControllScript)
     {
-        agentControllScript = agent;
+        this.agentControllScript = agentControllScript;
     }
     public override void Handler(AgentenControllscript agentControllScript)
     {

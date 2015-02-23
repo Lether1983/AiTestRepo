@@ -7,11 +7,12 @@ class State2 : StateHandler
     float speed = 2f;
     AgentenControllscript agentControllScript;
 
-    public State2(AgentenControllscript agent)
+    public State2(AgentenControllscript agentControllScript)
     {
-        agentControllScript = agent;
-        position = agent.WaypointArray[Random.Range(0, agent.WaypointArray.Length)].transform.position;
+        this.agentControllScript = agentControllScript;
+        position = agentControllScript.WaypointArray[Random.Range(0, agentControllScript.WaypointArray.Length)].transform.position;
     }
+
     public override void Handler(AgentenControllscript agentControllScript)
     {
         AggressiveState(agentControllScript);
