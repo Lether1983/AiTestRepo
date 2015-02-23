@@ -17,7 +17,7 @@ public class AgentenControllscript : MonoBehaviour
     {
         AgentenController = GetComponent<CharacterController>();
         WaypointArray = GameObject.FindGameObjectsWithTag("Waypoint");
-        stateHandler = new State1(this);
+        stateHandler = new NormalState(this);
         Health = 100;
 	}
 	

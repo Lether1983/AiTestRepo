@@ -2,19 +2,19 @@
 using System;
 using System.Collections;
 
-class State1 : StateHandler 
+class NormalState : StateHandler 
 {
     AgentenControllscript agentControllScript;
 
-    public State1(AgentenControllscript agentControllScript)
+    public NormalState(AgentenControllscript agentControllScript)
     {
         this.agentControllScript = agentControllScript;
     }
     public override void Handler(AgentenControllscript agentControllScript)
     {
-        NormalState(agentControllScript);
+        NormalAgentState(agentControllScript);
     }
-    private void NormalState(AgentenControllscript agentControllScript)
+    private void NormalAgentState(AgentenControllscript agentControllScript)
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
         {

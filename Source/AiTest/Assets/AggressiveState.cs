@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-class State2 : StateHandler
+class AggressiveState : StateHandler
 {
     Vector3 position;
     float speed = 2f;
     AgentenControllscript agentControllScript;
 
-    public State2(AgentenControllscript agentControllScript)
+    public AggressiveState(AgentenControllscript agentControllScript)
     {
         this.agentControllScript = agentControllScript;
         position = agentControllScript.WaypointArray[Random.Range(0, agentControllScript.WaypointArray.Length)].transform.position;
@@ -15,10 +15,10 @@ class State2 : StateHandler
 
     public override void Handler(AgentenControllscript agentControllScript)
     {
-        AggressiveState(agentControllScript);
+        AggressiveAgentState(agentControllScript);
     }
 
-    private void AggressiveState(AgentenControllscript agentControllScript)
+    private void AggressiveAgentState(AgentenControllscript agentControllScript)
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
         {
@@ -33,7 +33,6 @@ class State2 : StateHandler
         }
         else
         {
-             
             if(Vector3.Distance(agentControllScript.transform.position, position) <= 0.5f)
             {
                 position = agentControllScript.WaypointArray[Random.Range(0, agentControllScript.WaypointArray.Length)].transform.position;
