@@ -46,11 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AgentenControllscript.cs" />
-     <Compile Include="Assets\AggressiveState.cs" />
-     <Compile Include="Assets\Movement.cs" />
-     <Compile Include="Assets\NormalState.cs" />
-     <Compile Include="Assets\StateHandler.cs" />
+     <Compile Include="Assets\Resources\Scripts\Agents\PatrolGuardAgent.cs" />
+     <Compile Include="Assets\Resources\Scripts\Agents\StationDogAgent.cs" />
+     <Compile Include="Assets\Resources\Scripts\Agents\StationGuardAgent.cs" />
+     <Compile Include="Assets\Resources\Scripts\Player\Movement.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\AggressiveDogState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\AggressiveState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\NormalDogState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\NormalState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\PatrolAgressiveState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\PatrolState.cs" />
+     <Compile Include="Assets\Resources\Scripts\States\StateHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

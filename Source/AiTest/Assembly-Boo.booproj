@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{A0D4CAAE-2001-74E8-DC4B-FD6A9916F606}</ProjectGuid>
+	<ProjectGuid>{02FB10B3-E203-53FB-2A62-2AA8EDD52B0E}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-Boo</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,17 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Resources\Scripts\Agents\PatrolGuardAgent.cs" />
-     <Compile Include="Assets\Resources\Scripts\Agents\StationDogAgent.cs" />
-     <Compile Include="Assets\Resources\Scripts\Agents\StationGuardAgent.cs" />
-     <Compile Include="Assets\Resources\Scripts\Player\Movement.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\AggressiveDogState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\AggressiveState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\NormalDogState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\NormalState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\PatrolAgressiveState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\PatrolState.cs" />
-     <Compile Include="Assets\Resources\Scripts\States\StateHandler.cs" />
+     <Compile Include="Assets\NewBehaviourScript.boo" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

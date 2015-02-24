@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AgentenControllscript : MonoBehaviour 
+public class StationDogAgent : MonoBehaviour 
 {
     public Vector3 movedirection = Vector3.zero;
     public float dist;
@@ -10,36 +10,36 @@ public class AgentenControllscript : MonoBehaviour
     public GameObject[] WaypointArray;
     public StateHandler stateHandler;
     CharacterController AgentenController;
-    
-	// Use this for initialization
 
-	void Start () 
+    // Use this for initialization
+
+    void Start()
     {
         AgentenController = GetComponent<CharacterController>();
         WaypointArray = GameObject.FindGameObjectsWithTag("Waypoint");
-        stateHandler = new NormalState(this);
+        stateHandler = new NormalDogState(this);
         Health = 100;
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         other = GameObject.FindGameObjectWithTag("Player").transform;
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             Health = Health - 50;
         }
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Health = Health + 50;
         }
 
-        if(other)
+        if (other)
         {
             dist = Vector3.Distance(this.transform.position, other.transform.position);
-            stateHandler.Handler(this);
+            stateHandler.Handler();
         }
         AgentenController.Move(movedirection * Time.deltaTime);
-	}
+    }
 }
