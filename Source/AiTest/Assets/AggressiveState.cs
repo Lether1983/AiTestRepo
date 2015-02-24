@@ -13,12 +13,12 @@ class AggressiveState : StateHandler
         position = agentControllScript.WaypointArray[Random.Range(0, agentControllScript.WaypointArray.Length)].transform.position;
     }
 
-    public override void Handler(AgentenControllscript agentControllScript)
+    public override void Handler()
     {
-        AggressiveAgentState(agentControllScript);
+        AggressiveAgentState();
     }
 
-    private void AggressiveAgentState(AgentenControllscript agentControllScript)
+    private void AggressiveAgentState()
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
         {
@@ -45,7 +45,7 @@ class AggressiveState : StateHandler
 
         if(agentControllScript.Health > 50)
         {
-            agentControllScript.stateHandler = new State1(agentControllScript);
+            agentControllScript.stateHandler = new NormalState(agentControllScript);
         }
     }
 }

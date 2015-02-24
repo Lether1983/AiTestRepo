@@ -10,11 +10,11 @@ class NormalState : StateHandler
     {
         this.agentControllScript = agentControllScript;
     }
-    public override void Handler(AgentenControllscript agentControllScript)
+    public override void Handler()
     {
-        NormalAgentState(agentControllScript);
+        NormalAgentState();
     }
-    private void NormalAgentState(AgentenControllscript agentControllScript)
+    private void NormalAgentState()
     {
         if(agentControllScript.dist <= 2.5f && agentControllScript.dist > 1f)
         {
@@ -35,7 +35,7 @@ class NormalState : StateHandler
 
         if(agentControllScript.Health <= 50)
         {
-            agentControllScript.stateHandler = new State2(agentControllScript);
+            agentControllScript.stateHandler = new AggressiveState(agentControllScript);
             
         }
     }
