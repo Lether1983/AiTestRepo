@@ -21,7 +21,10 @@ public class Agent : MonoBehaviour
         Health = 100;
     }
 
-    protected abstract void OnStart();
+    protected virtual void OnStart()
+    {
+
+    }
 
     // Update is called once per frame
     void Update()
