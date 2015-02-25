@@ -8,7 +8,7 @@ public class AggressiveDogState : StateHandler
     public AggressiveDogState(Agent agent)
     {
         this.agent = agent;
-        OnEnter += RushDogMode;
+        OnExit += RushDogMode;
     }
     public override void Handler()
     {

@@ -30,6 +30,11 @@ public class PatrolAgressiveState : StateHandler
 
     private void PatrolMode()
     {
+        if (Vector3.Distance(agent.transform.position, position) <= 0.5f)
+        {
+            position = agent.WaypointArray[Random.Range(0, agent.WaypointArray.Length)].transform.position;
+        }
+
         agent.transform.LookAt(position);
         agent.movedirection = agent.transform.forward * speed;
         agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Patrol";

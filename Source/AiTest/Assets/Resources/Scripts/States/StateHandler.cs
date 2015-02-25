@@ -5,9 +5,9 @@ public abstract class StateHandler
 {
     protected Agent agent;
     public delegate void OnState();
-    public event OnState OnEnter;
-    public event OnState OnUpdate;
-    public event OnState OnExit;
+    public event OnState OnEnter = delegate { };
+    public event OnState OnUpdate = delegate { };
+    public event OnState OnExit = delegate { };
 
     public virtual void Handler()
     {
