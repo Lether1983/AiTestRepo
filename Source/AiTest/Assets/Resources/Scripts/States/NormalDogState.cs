@@ -3,38 +3,43 @@ using System.Collections;
 
 public class NormalDogState : StateHandler
 {
-    StationDogAgent agent;
 
-    public NormalDogState(StationDogAgent agent)
+    public NormalDogState(Agent agent)
     {
         this.agent = agent;
+        OnEnter += PursuitDogMode;
+        OnUpdate += BiteDogMode;
+        OnExit += SleepDogMode;
     }
     public override void Handler()
     {
-        NormalDogAgentState();
+        ChangeAgentState();
+        base.Handler();
     }
-    private void NormalDogAgentState()
+    private void ChangeAgentState()
     {
-        if(agent.dist <= 2.5f && agent.dist > 1f)
-        {
-            agent.transform.LookAt(agent.other.position);
-            agent.movedirection = agent.transform.forward;
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Pursuit";
-        }
-        else if(agent.dist <= 1f)
-        {
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Bite";
-            agent.movedirection = Vector3.zero;
-        }
-        else
-        {
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Sleep";
-            agent.movedirection = Vector3.zero;
-        }
-
         if(agent.Health <= 50)
         {
             agent.stateHandler = new AggressiveDogState(agent);
         }
+    }
+
+    private void SleepDogMode()
+    {
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Sleep";
+        agent.movedirection = Vector3.zero;
+    }
+
+    private void BiteDogMode()
+    {
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Bite";
+        agent.movedirection = Vector3.zero;
+    }
+
+    private void PursuitDogMode()
+    {
+        agent.transform.LookAt(agent.other.position);
+        agent.movedirection = agent.transform.forward;
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Pursuit";
     }
 }

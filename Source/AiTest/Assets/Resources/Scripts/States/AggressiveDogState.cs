@@ -3,26 +3,30 @@ using System.Collections;
 
 public class AggressiveDogState : StateHandler
 {
-    StationDogAgent agent;
     float speed = 5f;
 
-    public AggressiveDogState(StationDogAgent agent)
+    public AggressiveDogState(Agent agent)
     {
         this.agent = agent;
+        OnEnter += RushDogMode;
     }
     public override void Handler()
     {
-        AggressiveDogAgentState();  
+        AggressiveDogAgentState();
+        base.Handler();
     }
     public void AggressiveDogAgentState()
     {
-        agent.transform.LookAt(agent.other.position);
-        agent.movedirection = agent.transform.forward * speed;
-        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Rush";
-
         if(agent.Health > 50)
         {
             agent.stateHandler = new NormalDogState(agent);
         }
+    }
+
+    private void RushDogMode()
+    {
+        agent.transform.LookAt(agent.other.position);
+        agent.movedirection = agent.transform.forward * speed;
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Rush";
     }
 }

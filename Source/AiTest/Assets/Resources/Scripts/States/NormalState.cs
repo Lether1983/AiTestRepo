@@ -4,39 +4,42 @@ using System.Collections;
 
 class NormalState : StateHandler 
 {
-    StationGuardAgent agent;
-
-    public NormalState(StationGuardAgent agent)
+    public NormalState(Agent agent)
     {
         this.agent = agent;
+        OnEnter += PursuitMode;
+        OnUpdate += HeavyMeleeAttackMode;
+        OnExit += IdleMode;
     }
     public override void Handler()
     {
-        NormalAgentState();
+        ChangeAgentState();
+        base.Handler();
     }
-    private void NormalAgentState()
+    private void ChangeAgentState()
     {
-        if(agent.dist <= 2.5f && agent.dist > 1f)
-        {
-            agent.transform.LookAt(agent.other.position);
-            agent.movedirection = agent.transform.forward;
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Pursuit";
-        }
-        else if(agent.dist <= 1f)
-        {
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Heavy Melee Attack";
-            agent.movedirection = Vector3.zero;
-        }
-        else
-        {
-            agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Idle";
-            agent.movedirection = Vector3.zero;
-        }
-
         if(agent.Health <= 50)
         {
             agent.stateHandler = new AggressiveState(agent);
-            
         }
+    }
+
+    private void IdleMode()
+    {
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Idle";
+        agent.movedirection = Vector3.zero;
+    }
+
+    private void HeavyMeleeAttackMode()
+    {
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Heavy Melee Attack";
+        agent.movedirection = Vector3.zero;
+    }
+
+    private void PursuitMode()
+    {
+        agent.transform.LookAt(agent.other.position);
+        agent.movedirection = agent.transform.forward;
+        agent.transform.gameObject.GetComponentInChildren<TextMesh>().text = "Pursuit";
     }
 }
